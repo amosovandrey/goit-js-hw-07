@@ -1,1 +1,1 @@
-# tutorial
+goit-js-hw-07
