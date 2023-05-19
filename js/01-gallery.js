@@ -1,7 +1,4 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
-
-console.log(galleryItems);
 
 const galleryEl = document.querySelector('.gallery');
 const galleryMarkup = createGalleryMarkup(galleryItems);
@@ -40,16 +37,16 @@ function modalOpen(imageUrl) {
     <img src="${imageUrl}">
 `);
 
-  function closeModal(e) {
+  function modalClose(e) {
     if (e.key === 'Escape') {
       instance.close();
-      window.removeEventListener('keydown', closeModal);
+      window.removeEventListener('keydown', modalClose);
     }
   }
 
   instance.show();
 
-  window.addEventListener('keydown', closeModal);
+  window.addEventListener('keydown', modalClose);
 }
 
 galleryEl.addEventListener('click', onItemClick);
