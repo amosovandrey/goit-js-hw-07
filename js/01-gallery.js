@@ -33,20 +33,27 @@ function onItemClick(e) {
 }
 
 function modalOpen(imageUrl) {
-  const instance = basicLightbox.create(`
-    <img src="${imageUrl}">
-`);
+  const instance = basicLightbox.create(
+    `
+<img src="${imageUrl}">
+`,
+    {
+      onShow: () => {
+        window.addEventListener('keydown', modalClose);
+      },
+      onClose: () => {
+        window.removeEventListener('keydown', modalClose);
+      },
+    }
+  );
 
   function modalClose(e) {
     if (e.key === 'Escape') {
       instance.close();
-      window.removeEventListener('keydown', modalClose);
     }
   }
 
   instance.show();
-
-  window.addEventListener('keydown', modalClose);
 }
 
 galleryEl.addEventListener('click', onItemClick);
